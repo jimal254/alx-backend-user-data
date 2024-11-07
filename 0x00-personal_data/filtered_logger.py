@@ -8,6 +8,7 @@ import logging
 from os import environ
 import mysql.connector
 
+
 PII_FIELDS = ("name", "email", "phone", "ssn", "password")
 
 
@@ -48,13 +49,11 @@ def get_logger() -> logging.Logger:
 
 def get_db() -> mysql.connector.connection.MySQLConnection:
     """Returns a connector to a MySQL database."""
-    # Fetch credentials from environment variables
     username = environ.get("PERSONAL_DATA_DB_USERNAME", "root")
     password = environ.get("PERSONAL_DATA_DB_PASSWORD", "")
     host = environ.get("PERSONAL_DATA_DB_HOST", "localhost")
     db_name = environ.get("PERSONAL_DATA_DB_NAME")
 
-    # Establish and return the database connection
     cnx = mysql.connector.connect(user=username,
                                   password=password,
                                   host=host,
@@ -92,3 +91,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
